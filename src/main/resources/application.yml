@@ -1,0 +1,28 @@
+#default values
+#spring:
+#  rabbitmq:
+#    host: localhost
+#    username: guest
+#    password: guest
+#    port: 5672
+
+jms: 
+  queue:
+    name: q.dojorabbit.notificacao
+    error: q.dojorabbit.notificacao.err
+    wait: q.dojorabbit.notificacao.wait
+  exchange:
+    work: x.dojorabbit.notificacao
+    error: x.dojorabbit.notificacao.err
+    wait: x.dojorabbit.notificacao.wait
+      
+spring:
+  rabbitmq:
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 5000
+          max-attempts: 3
+          multiplier: 2
+          max-interval: 40s
